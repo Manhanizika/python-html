@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login do Gerente</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            background-color: #f0f0f0;
+        }
+        .Imglogo{
+            position: relative;
+            bottom: 100px;
+            width: 675px; 
+            height: 175px;
+        }
+
+        input{
+            width: 650px;
+        }
+        button{
+            background-color: #3C78D8;
+            color: #ffffff;
+            border: 2px solid #ffffff;
+            border-radius: 5px;
+            width: auto;
+            height: 55px;
+            font-size: 30px;
+        }
+
+        div{
+            line-height: 40px;
+        }
+       
+    </style>
+</head>
+<body>
+    <img class="Imglogo" src="jornadatechimg.png" alt="Logo desenvolvida para dar uma imagem melhor ao site">
+    <br>
+
+        <div>
+
+            <input class="uncss" type="text" id="username" placeholder="Usuário" required autofocus>
+            <br>
+            <input class="sncss" type="password" id="password" placeholder="Senha" required><br>
+
+        </div>
+            <button class="btncss" type="button" id="login-button">Entrar</button>
+    <script>
+       
+        const usersData = [
+            { username: "Manhani", password: "nanami" },
+            { username: "LEHpex", password: "felipe" }
+        ];
+
+        document.getElementById("login-button").addEventListener("click", function() {
+            logar();
+        });
+
+        document.getElementById("password").addEventListener("keydown", function(event) {
+            if (event.key === "Enter") {
+                logar();
+            }
+        });
+
+        function logar() {
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+
+            const user = usersData.find(user => user.username === username && user.password === password);
+
+            if (user) {
+                alert("Login bem-sucedido!");
+                window.location.href = "telaCartoes.html";
+            } else {
+                alert("Usuário ou senha incorretos. Tente novamente.");
+            }
+        }
+                
+    </script>
+</body>
+</html>
