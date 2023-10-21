@@ -44,7 +44,7 @@
     </style>
 </head>
 <body>
-    <img class="Imglogo" src="jornadatechimg.png" alt="Logo desenvolvida para dar uma imagem melhor ao site">
+    <img class="Imglogo" src="{{ url_for('static', filename='imagens/jornadatechimg.png') }}" alt="logo Criada para Jornada Tech">
     <br>
 
         <div>
@@ -82,7 +82,7 @@
 
             if (user) {
                 alert("Login bem-sucedido!");
-                window.location.href = "cadastrocartao.html";
+                window.location.href = "cadastrocartao";
             } else {
                 alert("Usuário ou senha incorretos. Tente novamente.");
             }
