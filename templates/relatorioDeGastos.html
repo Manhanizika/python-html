@@ -1,26 +1,84 @@
-<!DOCTYPE html>
-<html lang="pt-Br">
-<head>
-    <meta charset="UTF-8">
-    <title>Relatório de Gastos</title>
-  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='cssGeral.css') }}">
+{%extends "home.html"%}
+{%block content%}
 
-</head>
-<body>
-<div class="divContainer">
-        <nav class="barraLateral">
-            <img class="logoJtechBL" src="{{ url_for('static', filename='imagens/J.Tech Logo Branco.svg') }}"  alt="Logo Jornada Tech Branco">
-        <div class="div-redonda">
-            <img src="{{ url_for('static', filename='imagens/perfil.jpg') }}" alt="Foto de Perfil">
-            <h2 class="h4" style="text-align: center; color: white; padding-top: 24px;">Gerente Carlos</h2>
-        </div>
-        <div class="movebutton">
-        <button class="buttonMenu" onclick="window.location.href='visualizarfatura'">Clientes</button>
-        <button class="buttonMenu" onclick="window.location.href='listacartao'">Cartões</button>
-        <button class="buttonMenu" onclick="window.location.href='cadastracompras'">Compras</button>
-        <button class="selectedButtonMenu" onclick="window.location.href='relatoriodegastos'">Relatórios</button>
-        </div>
-        </nav>
+<link rel="stylesheet" href="../static/bootstrap/css/bootstrap.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='cssGeral.css') }}">
+<div>
+  <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" fill="black" class="bi bi-calendar3" viewBox="0 0 16 16">
+    <path d="M14 0H2a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2zM1 3.857C1 3.384 1.448 3 2 3h12c.552 0 1 .384 1 .857v10.286c0 .473-.448.857-1 .857H2c-.552 0-1-.384-1-.857V3.857z"/>
+    <path d="M6.5 7a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm-9 3a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm3 0a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"/>
+  </svg>
+  <select id="month">
+    <option value="01">Janeiro</option>
+    <option value="02">Fevereiro</option>
+    <option value="03">Março</option>
+    <option value="04">Abril</option>
+    <option value="05">Maio</option>
+    <option value="06">Junho</option>
+    <option value="07">Julho</option>
+    <option value="08">Agosto</option>
+    <option value="09">Setembro</option>
+    <option value="10">Outubro</option>
+    <option value="11">Novembro</option>
+    <option value="12">Dezembro</option>
+  </select>
+  <select id="year"> </select>
 </div>
-</body>
-</html>
+<div class="TabelaClientes">
+    <table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">First</th>
+      <th scope="col">Last</th>
+      <th scope="col">Handle</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <th scope="row">1</th>
+      <td>Mark</td>
+      <td>Otto</td>
+      <td>@mdo</td>
+    </tr>
+    <tr>
+      <th scope="row">2</th>
+      <td>Jacob</td>
+      <td>Thornton</td>
+      <td>@fat</td>
+    </tr>
+    <tr>
+      <th scope="row">3</th>
+      <td colspan="2">Larry the Bird</td>
+      <td>@twitter</td>
+    </tr>
+  </tbody>
+</table>
+</div>
+
+<script src="../static/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script>
+  document.addEventListener("DOMContentLoaded", function () {
+    const yearSelect = document.getElementById("year");
+
+    const startYear = 1900; // Ano inicial
+    const endYear = new Date().getFullYear(); // Ano atual
+
+    for (let year = startYear; year <= endYear; year++) {
+      const option = document.createElement("option");
+      option.value = year;
+      option.textContent = year;
+      yearSelect.appendChild(option);
+    }
+
+    yearSelect.addEventListener("change", updateSelection);
+
+    function updateSelection() {
+      const selectedYear = yearSelect.value;
+      console.log("Ano selecionado: " + selectedYear);
+    }
+  });
+</script>
+
+{%endblock%}
