@@ -1,18 +1,48 @@
 {%extends "home.html"%}
 {%block content%}
-<div class="divContainer">
-        <nav class="barraLateral">
-            <img class="logoJtechBL" src="{{ url_for('static', filename='imagens/J.Tech Logo Branco.svg') }}"  alt="Logo Jornada Tech Branco">
-        <div class="div-redonda">
-            <img src="{{ url_for('static', filename='imagens/perfil.jpg') }}" alt="Foto de Perfil">
-            <h2 class="h4" style="text-align: center; color: white; padding-top: 24px;">Gerente Carlos</h2>
+    <link rel="stylesheet" href="../static/bootstrap/css/bootstrap.css">
+    <link rel="stylesheet" href="../static/style.css">
+    <link rel="icon" type="image/png" href="../static/img/icon.png">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
+
+<h1> CADASTRAR COMPRA </h1>
+
+<div class=" d-flex flex-column mt-3">
+    <div class="container align-items-center d-flex flex-column mt-3">
+    <label for="cartao">Selecione o Cartão</label>
+    <input class="mb-3 align-items-center inputGrande" type="text" id="cartao" name="cartao" aria-label="Selecione o cartão desejado">
+
+    <label for="valor">Digite o valor da compra</label>
+    <input class="mb-3 align-items-center inputGrande" type="text" id="valor" name="valor" aria-label="Digite o valor da compra">
+
+    <label for="categoria"> Selecione a categoria </label>
+    <select class="mb-3 inputGrande" id="categoria" name="categoria" aria-label="Escolha a categoria desejada">
+        <option value="catSupermercado">Supermercado</option>
+        <option value="catRestaurante">Restaurante</option>
+        <option value="catViagem">Viagem</option>
+        <option value="catCombustivel">Combustível</option>
+        <option value="catFarmacia">Farmacia</option>
+        <option value="catLojasDepart">Lojas de Departamento</option>
+        <option value="catRoupasEModa">Roupas e Moda</option>
+        <option value="catEletr">Eletrônicos</option>
+        <option value="catLazerEntreten">Lazer e Entretenimento</option>
+        <option value="catAssinaturasOnLine">Assinaturas e Serviços on-line</option>
+        <option value="catSaude">Saúde</option>
+        <option value="catDoacoesCar">Doações de Caridade</option>
+        <option value="catOutros">Outros</option>
+    </select>
+
+    <label for="estabelecimento">Digite o nome do Estabelecimento </label>
+    <input class="mb-3 inputGrande" type="text" id="estabelecimento" name="estabelecimento" aria-label="Digite o nome Comercial do Estabelecimento em que foi efetuada a compra">
+
+        <div class="row">
+            <button class="mt-5 ml-3 mr-3 btnCancel"> Cancelar </button>
+            <button class="mt-5 ml-3 mr-3 btnCadast"> Cadastrar </button>
         </div>
-        <div class="movebutton">
-        <button class="buttonMenu" onclick="window.location.href='visualizarfatura'">Clientes</button>
-        <button class="buttonMenu" onclick="window.location.href='listacartao'">Cartões</button>
-        <button class="selectedButtonMenu" onclick="window.location.href='cadastracompras'">Compras</button>
-        <button class="buttonMenu" onclick="window.location.href='relatoriodegastos'">Relatórios</button>
-        </div>
-        </nav>
+
+    </div>
+
+
 </div>
+
 {%endblock%}
