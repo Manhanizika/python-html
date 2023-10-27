@@ -353,6 +353,7 @@ html, body {
   background-clip: border-box;
   border: 1px solid #23406f;
   border-radius: 7px;
+
 }
 
 .light {
@@ -367,7 +368,11 @@ font-size: 1.5rem;
 }
 
 .imgbtg{
-position: relative;
+position: sticky;
 color: #FFF ;
-left: 18rem;
+left: 900px;
+}
+
+i.calendario{
+font-size: 2rem;
 }
