@@ -61,5 +61,10 @@ def dashboardHome():
     return render_template('dashboardhome.html')
 
 
+@app.route('/alterarlimite')
+def alterarlimite():
+    return render_template('alterarLimite.html')
+
+
 if __name__ == '__main__':
     app.run(debug=True)
