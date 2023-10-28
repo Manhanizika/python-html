@@ -10,6 +10,9 @@ messages = [{'name': 'Message One',
              'content': 'Message Two Content'}
             ]
 
+cartoes = []
+
+
 
 @app.route('/')
 def homepage():
@@ -30,10 +33,12 @@ def cadastrarCartao():
             messages.append({'name': name, 'limit': limit})
         else:
             flash(name + ' cadastrado com sucesso')
+            cartoes.append({'name': name, 'limit': limit})
+
         messages.append({'name': name, 'limit': limit})
-        return redirect(url_for('cadastrarCartao'))
+        return render_template('cadastrocartao.html', lista = cartoes, tamanhoLista = len(cartoes))
     else:
-        return render_template('cadastrocartao.html')
+        return render_template('cadastrocartao.html',  lista = cartoes, tamanhoLista = len(cartoes))
 
 
 @app.route('/cadastracompras')
