@@ -57,6 +57,14 @@ def define_limite(cartao_id, limite):
     db.session.commit()
 
 
+def define_limite_nome(cartao_id, limite, nome):
+    cartao = pesquisa_cartao_por_id(cartao_id)
+    if(limite != cartao.limite):
+        cartao.limite = limite
+    if(nome != cartao.cliente):
+        cartao.cliente = nome
+    db.session.commit()
+
 def altera_status_cartao(cartao_id, operacao):
     cartao = pesquisa_cartao_por_id(cartao_id)
     operacao(cartao)

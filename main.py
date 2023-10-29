@@ -17,30 +17,47 @@ app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://{os.getenv('JTE
 app.config['SQLALCHEMY_ECHO'] = True
 db.init_app(app)
 
-messages = [{'name': 'Message One',
-             'content': 'Message One Content'},
-            {'limit': 'Message Two',
-             'content': 'Message Two Content'}
-            ]
-
-cartoes = []
-
 @app.route('/')
 def homepage():
     return render_template('home.html')
 
-@app.route('/cadastrocartao', methods=['POST'])
+@app.route('/cadastrarcartao', methods=['POST'])
 def cadastra_cartao():
     form = forms.CadastraCartaoForm(request.form)
     if form.validate():
-        use_cases.cadastra_cartao(form.cliente.data, form.limite.data)
-        flash('Cartão cadastrado com sucesso.', 'info')
-    return formulario_cartao(form)
+        if(form.id.data):
+            use_cases.define_limite_nome(form.id.data, form.limite.data, form.cliente.data)
+            flash('Dados do cartão alterado com sucesso.', 'info')
+        else:
+            use_cases.cadastra_cartao(form.cliente.data, form.limite.data)
+            flash('Cartão cadastrado com sucesso.', 'info')
+    return formulario_cartao()
 
 @app.route('/listacartao', methods=['GET'])
-def formulario_cartao(form=None):
-    return render_template('cadastrocartao.html', form=form, lista = use_cases.lista_cartoes())
+def formulario_cartao(form=None) :
+    return render_template('listacartao.html', form = form, lista = use_cases.lista_cartoes())
 
+@app.route('/cadastrocartao')
+def cadastro_cartao(cartao = Cartao(cliente = '', limite = 0)):
+    return render_template('cadastrocartao.html', cartao = cartao)
+
+@app.route('/cancelarcartao')
+def cancela_cartao():
+    id = request.args.get('id')
+    use_cases.cancela_cartao(id)
+    return formulario_cartao(request.form)
+
+@app.route('/ativarcartao')
+def ativa_cartao():
+    id = request.args.get('id')
+    use_cases.ativa_cartao(id)
+    return formulario_cartao(request.form)
+
+@app.route('/limitecartao')
+def formulario_limite():
+    id = request.args.get('id')
+    cartao = use_cases.pesquisa_cartao_por_id(id)
+    return cadastro_cartao(cartao)
 
 @app.route('/cadastracompras')
 def cadastrarCompras():
@@ -70,7 +87,6 @@ def dashboardHome():
 @app.route('/alterarlimite')
 def alterarlimite():
     return render_template('alterarLimite.html')
-
 
 if __name__ == '__main__':
     app.run(debug=True)

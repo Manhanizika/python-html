@@ -2,9 +2,10 @@ from wtforms import Form, validators, StringField, DecimalField, IntegerField
 
 
 class CadastraCartaoForm(Form):
+    id = IntegerField('ID')
     cliente = StringField(
         'Cliente',
-        [validators.DataRequired(message='Campo CLIENTE é obrigatório.')]
+        [validators.DataRequired(message='Campo NOME é obrigatório.')]
     )
     limite = DecimalField(
         'Limite',
