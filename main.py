@@ -1,8 +1,21 @@
 from flask import Flask, render_template, request, url_for, flash, redirect
 
+import forms
+import use_cases
+from database import db
+from model import Cartao, Compra
+from datetime import datetime
+import os
+
 app = Flask(__name__, static_url_path='/static')
 
-app.config['SECRET_KEY'] = 'your secret key'
+app.secret_key = b'd3fcbe64-7150-11ee-b1fe-93b6661203c1'
+
+# Configura banco de dados
+app.config['SQLALCHEMY_DATABASE_URI'] = f"mysql+mysqlconnector://{os.getenv('JTECH_MYSQL_USER', 'root')}:{os.getenv('JTECH_MYSQL_PASSWORD', 'password')}@{os.getenv('JTECH_MYSQL_HOST', 'localhost')}:{os.getenv('JTECH_MYSQL_PORT', '3306')}/{os.getenv('JTECH_MYSQL_DATABASE', 'byte_card')}"
+# 'mysql+mysqlconnector://root:password@localhost:3306/byte_card'
+app.config['SQLALCHEMY_ECHO'] = True
+db.init_app(app)
 
 messages = [{'name': 'Message One',
              'content': 'Message One Content'},
@@ -11,8 +24,6 @@ messages = [{'name': 'Message One',
             ]
 
 cartoes = []
-
-
 
 @app.route('/')
 def homepage():
@@ -36,9 +47,11 @@ def cadastrarCartao():
             cartoes.append({'name': name, 'limit': limit})
 
         messages.append({'name': name, 'limit': limit})
-        return render_template('cadastrocartao.html', lista = cartoes, tamanhoLista = len(cartoes))
+        listaCartoes = use_cases.lista_cartoes()
+        return render_template('cadastrocartao.html', lista = listaCartoes, tamanhoLista = len(listaCartoes))
     else:
-        return render_template('cadastrocartao.html',  lista = cartoes, tamanhoLista = len(cartoes))
+        listaCartoes = use_cases.lista_cartoes()
+        return render_template('cadastrocartao.html',  lista = listaCartoes, tamanhoLista = len(listaCartoes))
 
 
 @app.route('/cadastracompras')
