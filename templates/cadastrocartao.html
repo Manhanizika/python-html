@@ -3,15 +3,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css" integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
     <div class="divContainer">
             <h1 style="text-align: center;">Cadastrar Cartão de Crédito</h1>
-            <form method="post">
+            <form action="cadastrocartao" method="post" autocomplete="off">
                 <div class="mb-3">
                     <label for="exampleInputNome" class="form-label">Nome</label>
-                    <input type="text" class="form-control" name="txtNome" id="exampleInputNome" aria-describedby="nameHelp">
+                    <input type="text" class="form-control" name="cliente" id="exampleInputNome" aria-describedby="nameHelp">
                     <div id="nameHelp" class="form-text">Informe o nome do cliente</div>
                 </div>
                 <div class="input-group mb-3">
                     <span class="input-group-text">R$</span>
-                    <input type="text" class="form-control" name= "txtLimite" aria-label="Valor do limite do cliente">
+                    <input type="text" class="form-control" name= "limite" aria-label="Valor do limite do cliente">
                     <span class="input-group-text">.00</span>
                   </div>
                 <div>

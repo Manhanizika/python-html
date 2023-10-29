@@ -29,29 +29,17 @@ cartoes = []
 def homepage():
     return render_template('home.html')
 
+@app.route('/cadastrocartao', methods=['POST'])
+def cadastra_cartao():
+    form = forms.CadastraCartaoForm(request.form)
+    if form.validate():
+        use_cases.cadastra_cartao(form.cliente.data, form.limite.data)
+        flash('Cartão cadastrado com sucesso.', 'info')
+    return formulario_cartao(form)
 
-@app.route('/cadastrocartao', methods=('GET', 'POST'))
-def cadastrarCartao():
-    messages.clear()
-    print(request.method)
-    if request.method == 'POST':
-        name = request.form['txtNome']
-        limit = request.form['txtLimite']
-        if not name:
-            flash('Nome é obrigatório!')
-        elif not limit:
-            flash('Limite do cartão é obrigatório')
-            messages.append({'name': name, 'limit': limit})
-        else:
-            flash(name + ' cadastrado com sucesso')
-            cartoes.append({'name': name, 'limit': limit})
-
-        messages.append({'name': name, 'limit': limit})
-        listaCartoes = use_cases.lista_cartoes()
-        return render_template('cadastrocartao.html', lista = listaCartoes, tamanhoLista = len(listaCartoes))
-    else:
-        listaCartoes = use_cases.lista_cartoes()
-        return render_template('cadastrocartao.html',  lista = listaCartoes, tamanhoLista = len(listaCartoes))
+@app.route('/listacartao', methods=['GET'])
+def formulario_cartao(form=None):
+    return render_template('cadastrocartao.html', form=form, lista = use_cases.lista_cartoes())
 
 
 @app.route('/cadastracompras')
