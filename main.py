@@ -38,7 +38,7 @@ def formulario_cartao(form=None) :
     return render_template('listacartao.html', form = form, lista = use_cases.lista_cartoes())
 
 @app.route('/cadastrocartao')
-def cadastro_cartao(cartao = Cartao(cliente = '', limite = 0)):
+def cadastro_cartao(cartao = Cartao(id = 0, cliente = '', limite = 0)):
     return render_template('cadastrocartao.html', cartao = cartao)
 
 @app.route('/cancelarcartao')
