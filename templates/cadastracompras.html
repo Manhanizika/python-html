@@ -8,19 +8,22 @@
 <h1> CADASTRAR COMPRA </h1>
 
 <div class=" d-flex flex-column mt-3">
-    <div class="container align-items-center d-flex flex-column mt-3">
-    <label for="cartao">Selecione o Cartão</label>
+    <div class="container d-flex flex-column mt-3">
+    <label>Selecione o Cartão</label>
     <select class="form-select" aria-label="Default select example">
         <option selected>Open this select menu</option>
         <option value="1">One</option>
         <option value="2">Two</option>
         <option value="3">Three</option>
       </select>
-    <label for="valor">Digite o valor da compra</label>
-    <input class="mb-3 inputGrande" type="text" id="valor" name="valor" aria-label="Digite o valor da compra">
+
+    <div class="mb-3">
+  <label for="Valor" class="form-label">Email address</label>
+  <input type="email" class="form-control" id="Valor" placeholder="name@example.com">
+    </div>
 
     <label for="categoria"> Selecione a categoria </label>
-    <select class="mb-3 inputGrande" id="categoria" name="categoria" aria-label="Escolha a categoria desejada">
+    <select class="form-select " id="categoria" name="categoria" aria-label="Escolha a categoria desejada">
         <option value="catSupermercado">Supermercado</option>
         <option value="catRestaurante">Restaurante</option>
         <option value="catViagem">Viagem</option>
