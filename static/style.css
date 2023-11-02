@@ -338,6 +338,11 @@ html, body {
         position: relative;
         animation: go-back 0.9s ;
     }
+
+    #main{
+        margin-left: 0px;
+    }
+
   }
 
   .card {
