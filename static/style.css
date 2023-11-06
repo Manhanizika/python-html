@@ -7,7 +7,6 @@ html, body {
     height: 100%;
 }
 
-
 #header {
     position: fixed;
     top: 0;
@@ -339,6 +338,11 @@ html, body {
         position: relative;
         animation: go-back 0.9s ;
     }
+
+    #main{
+        margin-left: 0px;
+    }
+
   }
 
   .card {
@@ -353,6 +357,7 @@ html, body {
   background-clip: border-box;
   border: 1px solid #23406f;
   border-radius: 7px;
+
 }
 
 .light {
@@ -367,7 +372,13 @@ font-size: 1.5rem;
 }
 
 .imgbtg{
-position: relative;
+position: sticky;
 color: #FFF ;
-left: 18rem;
+left: 900px;
 }
+
+.rounded-table td, /* Coloquei esse estilo para arredondar as celulas da tabela */
+    .rounded-table th {
+      border-radius: 10px;
+      padding: 10px;
+    }

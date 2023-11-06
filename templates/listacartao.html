@@ -1,25 +1,96 @@
-<!DOCTYPE html>
-<html lang="pt-Br">
-<head>
-    <meta charset="UTF-8">
-    <title>listagem de cartões</title>
-    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='cssGeral.css') }}">
-</head>
-<body>
-<div class="divContainer">
-        <nav class="barraLateral">
-            <img class="logoJtechBL" src="{{ url_for('static', filename='imagens/J.Tech Logo Branco.svg') }}"  alt="Logo Jornada Tech Branco">
-        <div class="div-redonda">
-            <img src="{{ url_for('static', filename='imagens/perfil.jpg') }}" alt="Foto de Perfil">
-            <h2 class="h4" style="text-align: center; color: white; padding-top: 24px;">Gerente Carlos</h2>
+{%extends "home.html"%}
+{%block content%}
+<link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/material-design-iconic-font/2.2.0/css/material-design-iconic-font.min.css"
+    integrity="sha256-3sPp8BkKUE7QyPSl6VfBByBroQbKxKG7tsusY2mhbVY=" crossorigin="anonymous" />
+    <h1 style="text-align: center; margin-top: 10px;">Cartão de Crédito</h1>
+    <a href="cadastrocartao" class="btn d-block d-sm-inline-block btn btn-primary bi bi-file-earmark-text-fill" style="margin-bottom: 5px;">Cadastrar</a>
+    &nbsp
+    <div>
+        <div>
+            <form action="#" class="career-form mb-60">
+                <div class="row">
+                    <div class="col-md-6 col-lg-3 my-3">
+                        <div class="input-group position-relative">
+                            <input type="text" class="form-control" placeholder="Digite aqui" id="keywords">
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 my-3">
+                        <div class="select-container">
+                            <select class="form-control">
+                                <option selected="">Nome</option>
+                                <option value="1">Número Cartão</option>
+                                <option value="2">Limite</option>
+                                <option value="3">Data Vencimento</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3 my-3">
+                        <button class="form-control" style="background-color: white;color: black;"
+                            type="submit">Pesquisar</button>
+                    </div>
+                </div>
+            </form>
+            <div class="filter-result">
+                {% for item in lista %}
+                <div class="job-box d-md-flex justify-content-between mb-30">
+                    <div class="job-left my-4 d-md-flex align-items-center flex-wrap">
+                        <div class="img-holder mr-md-4 mb-md-0 mb-4 mx-auto mx-md-0 d-md-none d-lg-flex">
+                            {{item.cliente[0]}}
+                        </div>
+                        <div class="job-content">
+                            <h5 class="text-center text-md-left">{{item.cliente}}</h5>
+                            <ul class="d-md-flex flex-wrap text-capitalize ff-open-sans">
+                                <li class="mr-md-4">
+                                    <i class="zmdi zmdi-card mr-2"></i> {{item.numero}}
+                                </li>&nbsp
+                                <li class="mr-md-4">
+                                    <i class="zmdi zmdi-calendar mr-2"></i> {{item.validade}}
+                                </li>&nbsp
+                                <li class="mr-md-4">
+                                    <i class="zmdi zmdi-money mr-2"></i> {{ '{:,.2f}'.format(item.limite) }}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="job-right my-4 flex-shrink-0">
+                        <a href="/limitecartao?id={{ item.id }}"
+                            class="btn d-block d-sm-inline-block btn-primary">Editar</a>
+                        <a href="/faturacartao?id={{ item.id }}"
+                            class="btn d-block d-sm-inline-block btn-success">Fatura</a>
+                        {% if item.is_ativo %}
+                        <a href="/cancelarcartao?id={{ item.id }}"
+                            class="btn d-block d-sm-inline-block btn btn-danger">Cancelar</a>
+                        {% endif %}
+                        {% if item.is_cancelado %}
+                        <a href="/ativarcartao?id={{ item.id }}"
+                            class="btn d-block d-sm-inline-block btn btn-primary">Ativar</a>
+                        {% endif %}
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
         </div>
-        <div class="movebutton">
-        <button class="buttonMenu" onclick="window.location.href='visualizarfatura'">Clientes</button>
-        <button class="selectedButtonMenu" onclick="window.location.href='listacartao'">Cartões</button>
-        <button class="buttonMenu" onclick="window.location.href='cadastracompras'">Compras</button>
-        <button class="buttonMenu" onclick="window.location.href='relatoriodegastos'">Relatórios</button>
-        </div>
+        <!-- START Pagination -->
+        <nav aria-label="Page navigation">
+            <ul class="pagination pagination-reset justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">
+                        <i class="zmdi zmdi-long-arrow-left"></i>
+                    </a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item d-none d-md-inline-block"><a class="page-link" href="#">2</a></li>
+                <li class="page-item d-none d-md-inline-block"><a class="page-link" href="#">3</a></li>
+                <li class="page-item"><a class="page-link" href="#">...</a></li>
+                <li class="page-item"><a class="page-link" href="#">8</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#">
+                        <i class="zmdi zmdi-long-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
         </nav>
-</div>
-</body>
-</html>
+        <!-- END Pagination -->
+    </div>
+    {%endblock%}
