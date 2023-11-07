@@ -6,6 +6,7 @@ from database import db
 from model import Cartao, Compra
 from datetime import datetime
 import os
+import datetime
 
 app = Flask(__name__, static_url_path='/static')
 
@@ -35,7 +36,14 @@ def cadastra_cartao():
 
 @app.route('/listacartao', methods=['GET'])
 def formulario_cartao(form=None) :
-    return render_template('listacartao.html', form = form, lista = use_cases.lista_cartoes())
+    # return render_template('listacartao.html', form = form, lista = use_cases.lista_cartoes())
+    cartoes = []
+    cartoes.append(Cartao(numero=123, validade='12/2023',  cvv=312, limite=334.31, cliente='Wiu'))
+    cartoes.append(Cartao(numero=123, validade='12/2023',  cvv=312, limite=334.31, cliente='Wiu'))
+    cartoes.append(Cartao(numero=123, validade='12/2023',  cvv=312, limite=334.31, cliente='Wiu'))
+    cartoes.append(Cartao(numero=123, validade='12/2023',  cvv=312, limite=334.31, cliente='Wiu'))
+
+    return render_template('listacartao.html', form = form, lista = cartoes)
 
 @app.route('/cadastrocartao')
 def cadastro_cartao(cartao = Cartao(id = 0, cliente = '', limite = 0)):
@@ -76,8 +84,19 @@ def relatoriodegastos():
 
 @app.route('/visualizarfatura')
 def visualizarFatura():
-    return render_template('visualizarFatura.html')
-
+    # return render_template('visualizarFatura.html', lista = use_cases.listar_compras(1))
+    compras = []
+    #   id: Mapped[int] = mapped_column(primary_key=True)
+    # valor: Mapped[float] = mapped_column(Numeric(precision=15,
+    #                                              scale=2))
+    # data: Mapped[datetime] = mapped_column(DateTime())
+    # estabelecimento: Mapped[str] = mapped_column(String(1000))
+    # categoria: Mapped[str] = mapped_column(String(255))
+    # cartao_id: Mapped[int] = mapped_column(ForeignKey("cartoes.id"))
+    # cartao: Mapped['Cartao'] = relationship()
+    compras.append({'id': 123, "valor": 345.12, 'data': datetime.datetime.now(), 'estabelecimento': "Carrefour"})
+    compras.append({'id': 43, "valor": 1000.10, 'data': datetime.datetime.now(), 'estabelecimento': "Liberdade"})
+    return render_template('visualizarFatura.html', lista = compras)
 
 @app.route('/dashboardhome')
 def dashboardHome():

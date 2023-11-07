@@ -1,2 +1,6 @@
 
 .idea/workspace.xml
+__pycache__/database.cpython-312.pyc
+__pycache__/forms.cpython-312.pyc
+__pycache__/model.cpython-312.pyc
+*.pyc
