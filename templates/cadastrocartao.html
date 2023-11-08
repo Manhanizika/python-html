@@ -5,7 +5,7 @@
             <h1 style="text-align: center;">Cadastrar Cartão de Crédito</h1>
             <form action="/cadastrarcartao" method="post" autocomplete="off">
                 <div class="mb-3">
-                    <label for="exampleInputId" class="form-label">ID</label>
+                    <label class="form-label">ID</label>
                     <input type="text" class="form-control" name= "id" value="{{cartao.id == 'None' and '' or cartao.id}}" aria-label="Identificador do cliente" readonly>
                 </div>
                 <div class="mb-3">
@@ -16,7 +16,7 @@
                 <label for="exampleInputNome" class="form-label">Limite do cartão do cliente</label>
                 <div class="input-group mb-3">
                     <span class="input-group-text">R$</span>
-                    <input type="text" class="form-control" name= "limite" aria-describedby="limitHelp" value = "{{ '{:.0f}'.format(cartao.limite) }}">
+                    <input type="number" placeholder="limite do Cartão" class="form-control" name= "limite" aria-describedby="limitHelp"  value = "{{ '{:.0f}'.format(cartao.limite) }}">
                     <span class="input-group-text">.00</span>
                 </div>
                 <div>
@@ -25,4 +25,5 @@
                     <button class="btn btn-danger" type="reset">Cancelar</button>
                 </div>
             </form>
+    </div>
 {%endblock%}

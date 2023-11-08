@@ -40,7 +40,7 @@ def formulario_cartao(form=None) :
     cartoes = []
     cartoes.append(Cartao(numero=123, validade='12/2023',  cvv=312, limite=334.31, cliente='Wiu'))
     cartoes.append(Cartao(numero=123, validade='12/2023',  cvv=312, limite=334.31, cliente='Wiu'))
-    cartoes.append(Cartao(numero=123, validade='12/2023',  cvv=312, limite=334.31, cliente='Wiu'))
+    cartoes.append(Cartao(numero=123, validade='12/2023',  cvv=115, limite=4000.00, cliente='jorge'))
     cartoes.append(Cartao(numero=123, validade='12/2023',  cvv=312, limite=334.31, cliente='Wiu'))
 
     return render_template('listacartao.html', form = form, lista = cartoes)
