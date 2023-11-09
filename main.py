@@ -79,7 +79,12 @@ def listacartao():
 
 @app.route('/relatoriodegastos')
 def relatoriodegastos():
-    return render_template('relatorioDeGastos.html')
+
+    #Tentei criar uma lista para relatório de gastos aqui, porém eu não consegui.
+
+    #gastos.append({'id': 1547157415784198, "valor": 845.84, 'data': datetime.datetime.now(), 'categoria': "Lazer"})
+    #gastos.append({'id': 4358648774188745, "valor": 2300.61, 'data': datetime.datetime.now(), 'categoria': "Alimentacao"})
+    return render_template('relatorioDeGastos.html') #, lista = gastos)
 
 
 @app.route('/visualizarfatura')
