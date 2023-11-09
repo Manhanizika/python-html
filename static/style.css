@@ -366,7 +366,6 @@ html, body {
 }
 
 i.checksymbol {
-position: fixed;
 color: #fff;
 font-size: 1.5rem;
 }
@@ -376,3 +375,10 @@ position: sticky;
 color: #FFF ;
 left: 900px;
 }
+
+input[type="number"]::-webkit-inner-spin-button,
+  input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    appearance: none;
+
+  }
